@@ -2,6 +2,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.spy;
@@ -70,4 +72,21 @@ class RestaurantTest {
                 ()->restaurant.removeFromMenu("French fries"));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    @Test
+    public void get_order_value_should_return_order_value_for_given_list_of_items(){
+        //Arrange
+        restaurant.addToMenu("Vanilla Icecream", 115);
+        List<String> orderItems = new ArrayList<>();
+        orderItems.add("Vegetable lasagne");
+        orderItems.add("Vanilla Icecream");
+
+        int expectedOrderValue = 384;
+
+        //Act
+        int orderValue = restaurant.getOrderValue(orderItems);
+
+        //Assert
+        assertEquals(expectedOrderValue, orderValue);
+    }
 }
