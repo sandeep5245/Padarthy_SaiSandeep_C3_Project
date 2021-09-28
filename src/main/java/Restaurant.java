@@ -60,4 +60,13 @@ public class Restaurant {
         return name;
     }
 
+    public int getOrderValue(List<String> orderItems)
+    {
+        int orderValue = 0;
+
+        for (Item item: menu) {
+            orderValue += orderItems.contains(item.getName()) ? item.getPrice() : 0;
+        }
+        return orderValue;
+    }
 }
